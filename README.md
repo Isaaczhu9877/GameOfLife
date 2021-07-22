@@ -1,11 +1,30 @@
-# My Personal Project
+# Conway's Game of Life
 
-## A subtitle
+## What Does My Application Do?
+This application is based on the well known game of life created by mathematician John Conway. 
+It is a cellular automaton that depicts the evolution of cells. The game is quite simple and only
+requires input from the player before the simulation begins. The player can set the initial state
+of the program by creating different patterns of cells before running the simulation to watch the
+behaviour of the cells as the program progresses.
 
-A *bulleted* list:
-- item 1
-- item 2
-- item 3
+The Rules:
+- A cell with less than two neighbours dies due to underpopulation
+- A cell with two of three neighbours survives
+- A cell with more than three neighbours dies due to overpopulation
+- A dead cell with exactly three neighbours becomes alive due to reproduction
 
-An example of text with **bold** and *italic* fonts.  Note that the IntelliJ markdown previewer doesn't seem to render 
-the bold and italic fonts correctly but they will appear correctly on GitHub.
+## Who Will Use My Program
+
+This program can be used by anyone who is interested 
+learning about the game of life, such as a high school student
+who was introduced to the game in biology class. The game is easy to grasp 
+to play so anyone can begin to test different initial states and create interesting 
+patterns.
+## Why This Interests Me
+I was first introduced to this game by my high school
+biology teacher and I found myself really attracted to the
+game and spent the whole class trying to create cool shapes and 
+moving groups of cells with friends. I thought it would be a cool project 
+to recreate the game and include a few extra pieces of 
+functionality that I think will improve the experience of
+the game.
