@@ -24,7 +24,16 @@ patterns.
 I was first introduced to this game by my high school
 biology teacher and I found myself really attracted to the
 game and spent the whole class trying to create cool shapes and 
-moving groups of cells with friends. I thought it would be a cool project 
+moving groups of cells with friends. Later I found out that the 
+game, as simple as it may seem, has a very complicated past with mathematics and even today there are still
+new discoveries about the behaviour of the game. I thought it would be a cool project 
 to recreate the game and include a few extra pieces of 
 functionality that I think will improve the experience of
 the game.
+
+##User Stories
+
+- As a user, I want to be able to place cells on the grid
+- As a user, I want to be able to place cells on the grid
+- As a user, I want to be able to pause the game
+- As a user, I want to be able to reset the game
