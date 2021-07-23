@@ -33,4 +33,9 @@ class CellTest {
         cell.kill();
         assertEquals(cell.getStatus(), 0);
     }
+
+    @Test
+    public void testEquals() {
+        assertEquals(cell, new Cell(0,0));
+    }
 }

@@ -1,7 +1,9 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Colony {
 
@@ -34,9 +36,34 @@ public class Colony {
         for (Cell cell : cellColony) {
             int x = cell.getPosX();
             int y = cell.getPosY();
-            board.setBoard(x, y);
+            board.setBoard(x, y, 1);
         }
     }
+
+    // MODIFIES: this
+    // EFFECTS: checks every cell's neighbours and filters based on the requirements
+    // if neighbours are more than 3 or less than 2 remove te cell from list and kill it
+    // else do nothing
+    // if empty square has 3 neighbours make cell there and add to list
+    public void filter(Board board) {
+        for (int row = 0; row < board.getHeight(); row++) {
+            for (int column = 0; column < board.getWidth(); column++) {
+                int numOfNeighbours = board.checkSurrounding(row, column);
+                Cell cell = new Cell(row, column);
+                if (numOfNeighbours > 3 || numOfNeighbours < 2) {
+                    if (cellColony.contains(cell)) {
+                        cellColony.remove(cell);
+                        board.setBoard(column, row, 0);
+                    }
+                } else if (numOfNeighbours == 3 && !(cellColony.contains(cell))) {
+                    cellColony.add(cell);
+                    board.setBoard(column, row, 1);
+                }
+            }
+        }
+    }
+
+
 
     public int getSize() {
         return cellColony.size();
@@ -45,6 +72,4 @@ public class Colony {
     public boolean contain(Cell c) {
         return cellColony.contains(c);
     }
-
-
 }

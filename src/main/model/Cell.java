@@ -7,7 +7,7 @@ public class Cell {
 
 
     // EFFECTS: creates cell at position x,y
-    public Cell(int posX, int posY) {
+    public Cell(int posY, int posX) {
         status = 1;
         this.posX = posX;
         this.posY = posY;
@@ -44,4 +44,21 @@ public class Cell {
     public void setStatus(int status) {
         this.status = status;
     }
+
+    public boolean equals(Object obj) {
+        boolean result;
+
+        if (obj == null) {
+            return false;
+        }
+
+        if (obj.getClass() != this.getClass()) {
+            return false;
+        }
+        final Cell newCell = (Cell) obj;
+
+        result = (this.posY == newCell.posY && this.posX == newCell.posX);
+        return result;
+    }
+
 }

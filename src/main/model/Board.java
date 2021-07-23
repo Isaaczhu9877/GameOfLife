@@ -26,13 +26,91 @@ public class Board {
         }
     }
 
-    public void setBoard(int x, int y) {
-        this.board[x][y] = 1;
+    //0 0 0
+    //0 1 0
+    //0 0 0
+
+    // REQUIRES: Cell to be on the the board
+    // EFFECTS: Returns the number of neighbours to this cell
+    public int checkSurrounding(int y, int x) {
+        int neighbours = 0;
+        if (checkLeftUpNeighbour(y - 1, x - 1)) {
+            neighbours++;
+        }
+        if (checkUpNeighbour(y - 1, x)) {
+            neighbours++;
+        }
+        if (checkRightUpNeighbour(y - 1, x + 1)) {
+            neighbours++;
+        }
+        if (checkLeftNeighbour(y, x - 1)) {
+            neighbours++;
+        }
+        if (checkRightNeighbour(y, x + 1)) {
+            neighbours++;
+        }
+        if (checkLeftDownNeighbour(y + 1, x - 1)) {
+            neighbours++;
+        }
+        neighbours += (checkDownNeighbour(y + 1, x));
+        neighbours += (checkRightDownNeighbour(y + 1, x + 1));
+        return neighbours;
+    }
+
+    private boolean checkLeftUpNeighbour(int up, int left) {
+        return (up >= 0 && left >= 0 && board[up][left] == 1);
+    }
+
+    private boolean checkUpNeighbour(int up, int x) {
+        return (up >= 0 && board[up][x] == 1);
+    }
+
+    private boolean checkRightUpNeighbour(int up, int right) {
+        return (up >= 0 && right <= 99 && board[up][right] == 1);
+    }
+
+    private boolean checkLeftNeighbour(int y, int left) {
+        return (left >= 0 && board[y][left] == 1);
+    }
+
+    private boolean checkRightNeighbour(int y, int right) {
+        return (right <= 99 && board[y][right] == 1);
+    }
+
+    private boolean checkLeftDownNeighbour(int down, int left) {
+        return (down <= 99 && left >= 0 && board[down][left] == 1);
+    }
+
+    private int checkDownNeighbour(int down, int x) {
+        if (down <= 99 && board[down][x] == 1) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    private int checkRightDownNeighbour(int down, int right) {
+        if (down <= 99 && right <= 99 && board[down][right] == 1) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    public void setBoard(int x, int y, int status) {
+        this.board[y][x] = status;
     }
 
     public int getValue(int x, int y) {
-        return board[x][y];
+        return board[y][x];
     }
 
+    public int getWidth() {
+        return WIDTH;
+    }
+
+    public int getHeight() {
+        return HEIGHT;
+    }
 
 }

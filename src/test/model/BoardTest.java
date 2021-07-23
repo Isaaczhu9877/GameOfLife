@@ -12,15 +12,45 @@ public class BoardTest {
     @BeforeEach
     public void setUp () {
         board = new Board();
+        board.fillBoard();
     }
 
     @Test
     public void testFillBoard(){
-        board.fillBoard();
+
         for (int x = 0; x < board.WIDTH; x++){
             for (int y = 0; y < board.HEIGHT; y++ ) {
                 assertEquals(board.getValue(x, y), 0);
             }
         }
+    }
+
+    @Test
+    public void testCehckSurroundingEmpty() {
+        assertEquals(board.checkSurrounding(15, 15), 0);
+
+    }
+
+    @Test
+    public void testCehckSurrounding2() {
+        board.setBoard(1,1, 1);
+        board.setBoard(2,1,1);
+
+        assertEquals(board.checkSurrounding(2, 1), 2);
+
+    }
+    @Test
+    public void testCehckSurrounding8() {
+        board.setBoard(1,1, 1);
+        board.setBoard(1,2,1);
+        board.setBoard(1,3,1);
+        board.setBoard(2,1,1);
+        board.setBoard(2,3,1);
+        board.setBoard(3,1,1);
+        board.setBoard(3,2,1);
+        board.setBoard(3,3,1);
+
+        assertEquals(board.checkSurrounding(2, 2), 8);
+
     }
 }
