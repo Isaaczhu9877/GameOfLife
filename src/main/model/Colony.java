@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+// represents an array of Cells used to print game board
 public class Colony {
 
     private List<Cell> cellColony;
@@ -46,20 +47,28 @@ public class Colony {
     // else do nothing
     // if empty square has 3 neighbours make cell there and add to list
     public void filter(Board board) {
+        List<Cell> deadList = new ArrayList<>();
+        List<Cell> aliveList = new ArrayList<>();
         for (int row = 0; row < board.getHeight(); row++) {
             for (int column = 0; column < board.getWidth(); column++) {
                 int numOfNeighbours = board.checkSurrounding(row, column);
                 Cell cell = new Cell(row, column);
                 if (numOfNeighbours > 3 || numOfNeighbours < 2) {
                     if (cellColony.contains(cell)) {
-                        cellColony.remove(cell);
-                        board.setBoard(column, row, 0);
+                        deadList.add(cell);
                     }
                 } else if (numOfNeighbours == 3 && !(cellColony.contains(cell))) {
-                    cellColony.add(cell);
-                    board.setBoard(column, row, 1);
+                    aliveList.add(cell);
                 }
             }
+        }
+        for (Cell cell : deadList) {
+            cellColony.remove(cell);
+            board.setBoard(cell.getPosX(), cell.getPosY(), 0);
+        }
+        for (Cell cell : aliveList) {
+            cellColony.add(cell);
+            board.setBoard(cell.getPosX(), cell.getPosY(), 1);
         }
     }
 

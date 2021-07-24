@@ -20,9 +20,9 @@ public class ColonyTest {
         colony = new Colony();
         cell = new Cell(0,0);
         cell2 = new Cell(1,0);
-        cell3 = new Cell(99,0);
-        cell4 = new Cell(0,99);
-        cell5 = new Cell(99,99);
+        cell3 = new Cell(board.getHeight() - 1,0);
+        cell4 = new Cell(0,board.getWidth() - 1);
+        cell5 = new Cell(board.getHeight() - 1,board.getWidth() - 1);
     }
     @Test
     public void testColony() {
@@ -88,8 +88,8 @@ public class ColonyTest {
     @Test
     public void testFilterEmptyBoard() {
         colony.filter(board);
-        for (int y = 0; y < board.WIDTH; y++){
-            for (int x = 0; x < board.HEIGHT; x++ ) {
+        for (int y = 0; y < board.getHeight(); y++){
+            for (int x = 0; x < board.getWidth(); x++ ) {
                 assertEquals(board.getValue(x, y), 0);
             }
         }
@@ -158,5 +158,35 @@ public class ColonyTest {
         assertEquals(board.getValue(1, 1), 0);
         assertEquals(board.getValue(0, 1), 0);
         assertEquals(colony.getSize(), 0);
+    }
+    @Test
+    public void testFilter3UpDown() {
+        colony.addCell(new Cell(1,1));
+        colony.addCell(new Cell(0, 1));
+        colony.addCell(new Cell(2, 1));
+        colony.insertCells(board);
+        colony.filter(board);
+        assertEquals(board.getValue(1, 1), 1);
+        assertEquals(board.getValue(1, 0), 0);
+        assertEquals(board.getValue(1, 2), 0);
+        assertEquals(board.getValue(0, 1), 1);
+        assertEquals(board.getValue(2, 1), 1);
+        assertEquals(colony.getSize(), 3);
+    }
+
+    @Test
+    public void testFilter3Beside() {
+        colony.addCell(new Cell(1,1));
+        colony.addCell(new Cell(1, 2));
+        colony.addCell(new Cell(1, 3));
+        colony.insertCells(board);
+        colony.filter(board);
+        assertEquals(board.getValue(2, 1), 1);
+        assertEquals(board.getValue(1, 1), 0);
+        assertEquals(board.getValue(3, 1), 0);
+        assertEquals(board.getValue(2, 0), 1);
+        assertEquals(board.getValue(2, 2), 1);
+        assertEquals(colony.getSize(), 3);
+
     }
 }

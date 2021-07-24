@@ -35,5 +35,5 @@ the game.
 
 - As a user, I want to be able to place cells on the grid
 - As a user, I want to be able to place cells on the grid
-- As a user, I want to be able to pause the game
+- As a user, I want to be able to control how long the simulation runs
 - As a user, I want to be able to reset the game

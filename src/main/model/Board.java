@@ -4,8 +4,9 @@ package model;
 
 import java.util.List;
 
+// Class that represents a game grid with a given height and width
 public class Board {
-    public static final int HEIGHT = 100;
+    public static final int HEIGHT = 50;
     public static final int WIDTH = 100;
     private int[][] board;
 
@@ -66,7 +67,7 @@ public class Board {
     }
 
     private boolean checkRightUpNeighbour(int up, int right) {
-        return (up >= 0 && right <= 99 && board[up][right] == 1);
+        return (up >= 0 && right < WIDTH && board[up][right] == 1);
     }
 
     private boolean checkLeftNeighbour(int y, int left) {
@@ -74,15 +75,15 @@ public class Board {
     }
 
     private boolean checkRightNeighbour(int y, int right) {
-        return (right <= 99 && board[y][right] == 1);
+        return (right < WIDTH && board[y][right] == 1);
     }
 
     private boolean checkLeftDownNeighbour(int down, int left) {
-        return (down <= 99 && left >= 0 && board[down][left] == 1);
+        return (down < HEIGHT && left >= 0 && board[down][left] == 1);
     }
 
     private int checkDownNeighbour(int down, int x) {
-        if (down <= 99 && board[down][x] == 1) {
+        if (down < HEIGHT && board[down][x] == 1) {
             return 1;
         } else {
             return 0;
@@ -90,7 +91,7 @@ public class Board {
     }
 
     private int checkRightDownNeighbour(int down, int right) {
-        if (down <= 99 && right <= 99 && board[down][right] == 1) {
+        if (down < HEIGHT && right < WIDTH && board[down][right] == 1) {
             return 1;
         } else {
             return 0;

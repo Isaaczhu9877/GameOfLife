@@ -26,21 +26,32 @@ public class BoardTest {
     }
 
     @Test
-    public void testCehckSurroundingEmpty() {
+    public void testCheckSurroundingEmpty() {
         assertEquals(board.checkSurrounding(15, 15), 0);
 
     }
 
     @Test
-    public void testCehckSurrounding2() {
+    public void testCheckSurrounding2() {
         board.setBoard(1,1, 1);
         board.setBoard(2,1,1);
 
         assertEquals(board.checkSurrounding(2, 1), 2);
 
     }
+
     @Test
-    public void testCehckSurrounding8() {
+    public void testCheckSurroundingUpDown() {
+        board.setBoard(1,1, 1);
+        board.setBoard(1,2,1);
+        board.setBoard(1,3,1);
+
+        assertEquals(board.checkSurrounding(2, 1), 2);
+
+    }
+
+    @Test
+    public void testCheckSurrounding8() {
         board.setBoard(1,1, 1);
         board.setBoard(1,2,1);
         board.setBoard(1,3,1);
@@ -53,4 +64,5 @@ public class BoardTest {
         assertEquals(board.checkSurrounding(2, 2), 8);
 
     }
+
 }

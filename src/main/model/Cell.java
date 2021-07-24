@@ -1,5 +1,7 @@
 package model;
 
+
+//Class that represents a Cell with a given x and y position and a status on if its living of read
 public class Cell {
     private int status;
     private int posX;
@@ -47,16 +49,13 @@ public class Cell {
 
     public boolean equals(Object obj) {
         boolean result;
-
         if (obj == null) {
             return false;
         }
-
         if (obj.getClass() != this.getClass()) {
             return false;
         }
         final Cell newCell = (Cell) obj;
-
         result = (this.posY == newCell.posY && this.posX == newCell.posX);
         return result;
     }
