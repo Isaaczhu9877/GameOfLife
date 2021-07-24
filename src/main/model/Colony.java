@@ -53,7 +53,11 @@ public class Colony {
             for (int column = 0; column < board.getWidth(); column++) {
                 int numOfNeighbours = board.checkSurrounding(row, column);
                 Cell cell = new Cell(row, column);
-                if (numOfNeighbours > 3 || numOfNeighbours < 2) {
+                if (numOfNeighbours > 3) {
+                    if (cellColony.contains(cell)) {
+                        deadList.add(cell);
+                    }
+                } else if (numOfNeighbours < 2) {
                     if (cellColony.contains(cell)) {
                         deadList.add(cell);
                     }
@@ -62,16 +66,31 @@ public class Colony {
                 }
             }
         }
-        for (Cell cell : deadList) {
+//        for (Cell cell : deadList) {
+//            cellColony.remove(cell);
+//            board.setBoard(cell.getPosX(), cell.getPosY(), 0);
+//        }
+//        for (Cell cell : aliveList) {
+//            cellColony.add(cell);
+//            board.setBoard(cell.getPosX(), cell.getPosY(), 1);
+//        }
+        removeDead(deadList, board);
+        addAlive(aliveList, board);
+    }
+
+    public void removeDead(List<Cell> cellList, Board board) {
+        for (Cell cell : cellList) {
             cellColony.remove(cell);
             board.setBoard(cell.getPosX(), cell.getPosY(), 0);
         }
-        for (Cell cell : aliveList) {
+    }
+
+    public void addAlive(List<Cell> cellList, Board board) {
+        for (Cell cell : cellList) {
             cellColony.add(cell);
             board.setBoard(cell.getPosX(), cell.getPosY(), 1);
         }
     }
-
 
 
     public int getSize() {

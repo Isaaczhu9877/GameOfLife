@@ -199,8 +199,8 @@ public class ColonyTest {
         colony.insertCells(board);
         colony.filter(board);
         assertEquals(board.getValue(2, 1), 1);
-        assertEquals(board.getValue(1, 1), 0);
-        assertEquals(board.getValue(3, 1), 0);
+        assertEquals(board.getValue(1, 1), 1);
+        assertEquals(board.getValue(3, 1), 1);
         assertEquals(board.getValue(2, 2), 1);
         assertEquals(colony.getSize(), 7);
     }
