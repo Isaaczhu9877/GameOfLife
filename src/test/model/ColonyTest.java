@@ -102,6 +102,7 @@ public class ColonyTest {
         assertEquals(board.getValue(cell.getPosX(), cell.getPosY()), 1);
         colony.filter(board);
         assertEquals(colony.getSize(), 0);
+        assertEquals(board.getValue(cell.getPosX(), cell.getPosY()), 0);
     }
     @Test
     public void testRemove() {
@@ -156,7 +157,7 @@ public class ColonyTest {
         colony.insertCells(board);
         colony.filter(board);
         assertEquals(board.getValue(1, 1), 0);
-        assertEquals(board.getValue(0, 1), 0);
+        assertEquals(board.getValue(1, 0), 0);
         assertEquals(colony.getSize(), 0);
     }
     @Test
@@ -203,5 +204,37 @@ public class ColonyTest {
         assertEquals(board.getValue(3, 1), 1);
         assertEquals(board.getValue(2, 2), 1);
         assertEquals(colony.getSize(), 7);
+    }
+    @Test
+    public void testFilter8Cells() {
+        colony.addCell(new Cell(1,1));
+        colony.addCell(new Cell(1, 2));
+        colony.addCell(new Cell(1, 3));
+        colony.addCell(new Cell(2, 1));
+        colony.addCell(new Cell(2, 2));
+        colony.addCell(new Cell(2, 3));
+        colony.addCell(new Cell(3, 1));
+        colony.addCell(new Cell(3, 2));
+        colony.addCell(new Cell(3, 3));
+        colony.insertCells(board);
+        colony.filter(board);
+
+        assertEquals(colony.getSize(), 8);
+    }
+    @Test
+    public void testFilter9Cells() {
+        colony.addCell(new Cell(1,1));
+        colony.addCell(new Cell(1, 2));
+        colony.addCell(new Cell(1, 3));
+        colony.addCell(new Cell(2, 1));
+        colony.addCell(new Cell(2, 2));
+        colony.addCell(new Cell(2, 3));
+        colony.addCell(new Cell(3, 1));
+        colony.addCell(new Cell(3, 2));
+        colony.addCell(new Cell(3, 3));
+        colony.insertCells(board);
+        colony.filter(board);
+
+        assertEquals(colony.getSize(), 8);
     }
 }

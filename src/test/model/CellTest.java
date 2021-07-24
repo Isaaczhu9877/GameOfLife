@@ -43,8 +43,22 @@ class CellTest {
     public void testEqualsDifferentClass() {
         assertFalse(cell.equals(new Colony()));
     }
+
     @Test
     public void testEqualsNull() {
         assertFalse(cell.equals(null));
+    }
+
+    @Test
+    public void testSetPosX() {
+        assertEquals(cell.getPosX(), 0);
+        cell.setPosX(44);
+        assertEquals(cell.getPosX(), 44);
+    }
+    @Test
+    public void testSetPosy() {
+        assertEquals(cell.getPosY(), 0);
+        cell.setPosY(44);
+        assertEquals(cell.getPosY(), 44);
     }
 }
