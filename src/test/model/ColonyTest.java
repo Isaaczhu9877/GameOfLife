@@ -189,4 +189,19 @@ public class ColonyTest {
         assertEquals(colony.getSize(), 3);
 
     }
+
+    @Test
+    public void testFilter3Neighbours() {
+        colony.addCell(new Cell(1,1));
+        colony.addCell(new Cell(1, 2));
+        colony.addCell(new Cell(1, 3));
+        colony.addCell(new Cell(2, 2));
+        colony.insertCells(board);
+        colony.filter(board);
+        assertEquals(board.getValue(2, 1), 1);
+        assertEquals(board.getValue(1, 1), 0);
+        assertEquals(board.getValue(3, 1), 0);
+        assertEquals(board.getValue(2, 2), 1);
+        assertEquals(colony.getSize(), 7);
+    }
 }

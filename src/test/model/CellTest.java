@@ -38,4 +38,13 @@ class CellTest {
     public void testEquals() {
         assertEquals(cell, new Cell(0,0));
     }
+
+    @Test
+    public void testEqualsDifferentClass() {
+        assertFalse(cell.equals(new Colony()));
+    }
+    @Test
+    public void testEqualsNull() {
+        assertFalse(cell.equals(null));
+    }
 }

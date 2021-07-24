@@ -47,6 +47,7 @@ public class Cell {
         this.status = status;
     }
 
+    // EFFECTS: override for the equals method in the cell class that compares if two cells have the same coordinates
     public boolean equals(Object obj) {
         boolean result;
         if (obj == null) {
