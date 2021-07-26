@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-// represents an array of Cells used to print game board
+// represents an array of Cells used to track living cells on the game board
 public class Colony {
 
     private List<Cell> cellColony;
@@ -73,11 +73,12 @@ public class Colony {
     }
 
 
-
+    // EFFECTS: returns the size of the Colony
     public int getSize() {
         return cellColony.size();
     }
 
+    // EFFECTS: returns if the Colony contains a cell at a certain position
     public boolean contain(Cell c) {
         return cellColony.contains(c);
     }

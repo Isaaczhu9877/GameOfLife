@@ -1,19 +1,19 @@
 package model;
 
 
-
-import java.util.List;
-
-// Class that represents a game grid with a given height and width
+// Class that represents a game grid with a given width and height
+// 0,0 is at upper left and x increases from right to left and y from top to bottom
 public class Board {
-    public static final int HEIGHT = 50;
-    public static final int WIDTH = 100;
+    private int height; //30
+    private int width;  // 100
     private int[][] board;
 
 
     // EFFECTS: creates a new board and sets its width and height
-    public Board() {
-        this.board = new int[HEIGHT][WIDTH];
+    public Board(int x, int y) {
+        this.height = y;
+        this.width = x;
+        this.board = new int[y][x];
 
     }
 
@@ -57,61 +57,72 @@ public class Board {
         neighbours += (checkRightDownNeighbour(y + 1, x + 1));
         return neighbours;
     }
-
+    // EFFECTS: returns true if the coordinates are a valid board space and there is a living cell there, else false
     private boolean checkLeftUpNeighbour(int up, int left) {
         return (up >= 0 && left >= 0 && board[up][left] == 1);
     }
 
+    // EFFECTS: returns true if the coordinates are a valid board space and there is a living cell there, else false
     private boolean checkUpNeighbour(int up, int x) {
         return (up >= 0 && board[up][x] == 1);
     }
 
+    // EFFECTS: returns true if the coordinates are a valid board space and there is a living cell there, else false
     private boolean checkRightUpNeighbour(int up, int right) {
-        return (up >= 0 && right < WIDTH && board[up][right] == 1);
+        return (up >= 0 && right < width && board[up][right] == 1);
     }
 
+    // EFFECTS: returns true if the coordinates are a valid board space and there is a living cell there, else false
     private boolean checkLeftNeighbour(int y, int left) {
         return (left >= 0 && board[y][left] == 1);
     }
 
+    // EFFECTS: returns true if the coordinates are a valid board space and there is a living cell there, else false
     private boolean checkRightNeighbour(int y, int right) {
-        return (right < WIDTH && board[y][right] == 1);
+        return (right < width && board[y][right] == 1);
     }
 
+    // EFFECTS: returns true if the coordinates are a valid board space and there is a living cell there, else false
     private boolean checkLeftDownNeighbour(int down, int left) {
-        return (down < HEIGHT && left >= 0 && board[down][left] == 1);
+        return (down < height && left >= 0 && board[down][left] == 1);
     }
 
+    // EFFECTS: returns true if the coordinates are a valid board space and there is a living cell there, else false
     private int checkDownNeighbour(int down, int x) {
-        if (down < HEIGHT && board[down][x] == 1) {
+        if (down < height && board[down][x] == 1) {
             return 1;
         } else {
             return 0;
         }
     }
 
+    // EFFECTS: returns true if the coordinates are a valid board space and there is a living cell there, else false
     private int checkRightDownNeighbour(int down, int right) {
-        if (down < HEIGHT && right < WIDTH && board[down][right] == 1) {
+        if (down < height && right < width && board[down][right] == 1) {
             return 1;
         } else {
             return 0;
         }
     }
 
+    // EFFECTS: sets given coordinates on board to given status
     public void setBoard(int x, int y, int status) {
         this.board[y][x] = status;
     }
 
+    // EFFECTS: gets the value at given coordinate on board
     public int getValue(int x, int y) {
         return board[y][x];
     }
 
+    // EFFECTS: returns the width of the board
     public int getWidth() {
-        return WIDTH;
+        return width;
     }
 
+    // EFFECTS: returns the height of the board
     public int getHeight() {
-        return HEIGHT;
+        return height;
     }
 
 }

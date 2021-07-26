@@ -1,7 +1,7 @@
 package model;
 
 
-//Class that represents a Cell with a given x and y position and a status on if its living of read
+//Class that represents a Cell with a given x and y position and a status stating if its living of read
 public class Cell {
     private int status;
     private int posX;

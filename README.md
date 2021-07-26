@@ -33,7 +33,7 @@ the game.
 
 ##User Stories
 
-- As a user, I want to be able to place cells on the grid
-- As a user, I want to be able to place cells on the grid
+- As a user, I want to be able to add cells to the grid
+- As a user, I want to be able to set the size of the grid
 - As a user, I want to be able to control how long the simulation runs
 - As a user, I want to be able to reset the game

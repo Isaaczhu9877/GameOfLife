@@ -5,21 +5,22 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//JUnit tests for board class
 public class BoardTest {
 
     Board board;
 
     @BeforeEach
     public void setUp () {
-        board = new Board();
+        board = new Board(100, 30);
         board.fillBoard();
     }
 
     @Test
     public void testFillBoard(){
 
-        for (int x = 0; x < board.WIDTH; x++){
-            for (int y = 0; y < board.HEIGHT; y++ ) {
+        for (int x = 0; x < board.getWidth(); x++){
+            for (int y = 0; y < board.getHeight(); y++) {
                 assertEquals(board.getValue(x, y), 0);
             }
         }

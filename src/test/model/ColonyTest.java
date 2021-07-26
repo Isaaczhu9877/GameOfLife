@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+//JUnit tests for Colony class
 public class ColonyTest {
     Board board;
     Colony colony;
@@ -15,7 +16,7 @@ public class ColonyTest {
     Cell cell5;
     @BeforeEach
     public void setUp() {
-        board = new Board();
+        board = new Board(100, 30);
         board.fillBoard();
         colony = new Colony();
         cell = new Cell(0,0);
@@ -70,8 +71,8 @@ public class ColonyTest {
     public void testInsertCellsNoCells() {
         assertEquals(colony.getSize(), 0);
         colony.insertCells(board);
-        for (int x = 0; x < board.WIDTH; x++){
-            for (int y = 0; y < board.HEIGHT; y++ ) {
+        for (int x = 0; x < board.getWidth(); x++){
+            for (int y = 0; y < board.getHeight(); y++ ) {
                 assertEquals(board.getValue(x, y), 0);
             }
         }
