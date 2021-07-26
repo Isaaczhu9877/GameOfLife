@@ -57,6 +57,7 @@ public class Board {
         neighbours += (checkRightDownNeighbour(y + 1, x + 1));
         return neighbours;
     }
+
     // EFFECTS: returns true if the coordinates are a valid board space and there is a living cell there, else false
     private boolean checkLeftUpNeighbour(int up, int left) {
         return (up >= 0 && left >= 0 && board[up][left] == 1);
