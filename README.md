@@ -37,3 +37,7 @@ the game.
 - As a user, I want to be able to set the size of the grid
 - As a user, I want to be able to control how long the simulation runs
 - As a user, I want to be able to reset the game
+- As a user, I want to be able to load a game board from the file
+- As a user, I want to be able to save a game board to file
+- As a user, I want to be reminded of the option to save my game when I exit the application
+- As a user, I want to be given the option to load my game from file when I start the application
