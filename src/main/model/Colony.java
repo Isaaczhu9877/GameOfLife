@@ -1,12 +1,16 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.WritableClass;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 // represents an array of Cells used to track living cells on the game board
-public class Colony {
+public class Colony implements WritableClass {
 
     private List<Cell> cellColony;
 
@@ -81,5 +85,22 @@ public class Colony {
     // EFFECTS: returns if the Colony contains a cell at a certain position
     public boolean contain(Cell c) {
         return cellColony.contains(c);
+    }
+
+    // :
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("cells", cellsToJson());
+        return json;
+    }
+
+    // EFFECTS:
+    public JSONArray cellsToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Cell cell : cellColony) {
+            jsonArray.put(cell.toJson());
+        }
+        return jsonArray;
     }
 }

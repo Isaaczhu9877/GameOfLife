@@ -1,8 +1,12 @@
 package model;
 
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.WritableClass;
+
 //Class that represents a Cell with a given x and y position and a status stating if its living of read
-public class Cell {
+public class Cell implements WritableClass {
     private int status;
     private int posX;
     private int posY;
@@ -61,4 +65,12 @@ public class Cell {
         return result;
     }
 
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("posX", posX);
+        json.put("posY", posY);
+        return json;
+    }
 }
