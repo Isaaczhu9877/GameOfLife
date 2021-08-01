@@ -156,9 +156,7 @@ public class LaunchGame {
                 System.out.println("Invalid input please try again");
             }
         }
-        if (response.equals("n")) {
-            System.out.println("You said \"no\".");
-        } else {
+        if (response.equals("y")) {
             try {
                 jsonWriter.open();
                 jsonWriter.write(initialColony);
