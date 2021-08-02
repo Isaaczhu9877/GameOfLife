@@ -16,7 +16,7 @@ public class ColonyTest {
     Cell cell5;
     @BeforeEach
     public void setUp() {
-        board = new Board(100, 30);
+        board = new Board();
         board.fillBoard();
         colony = new Colony();
         cell = new Cell(0,0);

@@ -87,7 +87,7 @@ public class Colony implements WritableClass {
         return cellColony.contains(c);
     }
 
-    // :
+    // EFFECTS: creates Json representation of colony
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -95,7 +95,7 @@ public class Colony implements WritableClass {
         return json;
     }
 
-    // EFFECTS:
+    // EFFECTS: creates Json representation of each cell in Colony
     public JSONArray cellsToJson() {
         JSONArray jsonArray = new JSONArray();
         for (Cell cell : cellColony) {

@@ -4,16 +4,14 @@ package model;
 // Class that represents a game grid with a given width and height
 // 0,0 is at upper left and x increases from right to left and y from top to bottom
 public class Board {
-    private int height; //30
-    private int width;  // 100
+    private int height = 30; //30
+    private int width = 100;  // 100
     private int[][] board;
 
 
     // EFFECTS: creates a new board and sets its width and height
-    public Board(int x, int y) {
-        this.height = y;
-        this.width = x;
-        this.board = new int[y][x];
+    public Board() {
+        this.board = new int[height][width];
 
     }
 

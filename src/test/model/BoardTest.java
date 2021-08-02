@@ -12,7 +12,7 @@ public class BoardTest {
 
     @BeforeEach
     public void setUp () {
-        board = new Board(100, 30);
+        board = new Board();
         board.fillBoard();
     }
 
