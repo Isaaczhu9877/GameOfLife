@@ -65,7 +65,7 @@ public class Cell implements WritableClass {
         return result;
     }
 
-
+    // EFFECTS: creates Json representation of Cell
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

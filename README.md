@@ -37,7 +37,7 @@ the game.
 - As a user, I want to be able to control how long the simulation runs
 - As a user, I want to be able to reset the game
 - As a user, I want to be able to load an initial game board from the file
-- As a user, I want to be able to save a game inital board to file
-    - As a user, I want to be able to save an in progress board to file
+- As a user, I want to be able to save a game initial board to file
+- As a user, I want to be able to save a current in progress board to file
 - As a user, I want to be reminded of the option to save my game when I exit the application
 - As a user, I want to be given the option to load my game from file when I start the application

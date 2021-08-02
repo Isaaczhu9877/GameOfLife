@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 import org.json.*;
 
 // based on the structure given in JsonSerializationDemo
-// represents a JSON reader that creates object from given JSON file
+// represents a JSON reader that creates Colony object from given JSON file
 public class JsonReader {
     private String source;
 
