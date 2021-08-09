@@ -47,6 +47,22 @@ public class ColonyTest {
         assertTrue(colony.contain(cell));
         assertTrue(colony.contain(cell2));
     }
+
+    @Test
+    public void testAddCellSameCell() {
+        assertEquals(colony.getSize(), 0);
+        colony.addCell(cell);
+        colony.addCell(cell2);
+        assertEquals(colony.getSize(), 2);
+        assertTrue(colony.contain(cell));
+        assertTrue(colony.contain(cell2));
+        colony.addCell(cell);
+        colony.addCell(cell2);
+        assertEquals(colony.getSize(), 2);
+        assertTrue(colony.contain(cell));
+        assertTrue(colony.contain(cell2));
+    }
+
     @Test
     public void testRemoveInList() {
         assertEquals(colony.getSize(), 0);
@@ -86,6 +102,8 @@ public class ColonyTest {
         assertEquals(board.getValue(0,0), 1);
         assertEquals(board.getValue(0,1), 1);
     }
+
+
     @Test
     public void testFilterEmptyBoard() {
         colony.filter(board);
