@@ -4,8 +4,8 @@ package model;
 // Class that represents a game grid with a given width and height
 // 0,0 is at upper left and x increases from right to left and y from top to bottom
 public class Board {
-    private int height = 30; //30
-    private int width = 100;  // 100
+    private int height = 40;
+    private int width = 80;
     private int[][] board;
 
 
@@ -18,9 +18,9 @@ public class Board {
     // MODIFIES: this
     // EFFECTS: fills in board with all 0s
     public void fillBoard() {
-        for (int[] i : this.board) {
-            for (int num : i) {
-                num = 0;
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                setBoard(x,y,0);
             }
         }
     }
@@ -103,6 +103,8 @@ public class Board {
             return 0;
         }
     }
+
+
 
     // EFFECTS: sets given coordinates on board to given status
     public void setBoard(int x, int y, int status) {

@@ -238,4 +238,20 @@ public class ColonyTest {
 
         assertEquals(colony.getSize(), 8);
     }
+
+    @Test
+    public void testWipe() {
+        colony.addCell(new Cell(1,1));
+        colony.addCell(new Cell(1, 2));
+        colony.addCell(new Cell(1, 3));
+        colony.addCell(new Cell(2, 1));
+        colony.addCell(new Cell(2, 2));
+        colony.addCell(new Cell(2, 3));
+        colony.addCell(new Cell(3, 1));
+        colony.addCell(new Cell(3, 2));
+        colony.addCell(new Cell(3, 3));
+        assertEquals(9, colony.getSize());
+        colony.wipe();
+        assertEquals(0, colony.getSize());
+    }
 }

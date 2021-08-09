@@ -23,7 +23,9 @@ public class Colony implements WritableClass {
     // MODIFIES: this
     // EFFECTRS: adds cell to colony
     public void addCell(Cell c) {
-        this.cellColony.add(c);
+        if (!cellColony.contains(c)) {
+            this.cellColony.add(c);
+        }
     }
 
     // MODIFIES: this
@@ -87,6 +89,13 @@ public class Colony implements WritableClass {
         return cellColony.contains(c);
     }
 
+    //MODIFIES: this
+    // EFFECTS: clears all cells in colony
+    public void wipe() {
+        cellColony.clear();
+
+    }
+
     // EFFECTS: creates Json representation of colony
     @Override
     public JSONObject toJson() {
@@ -103,4 +112,5 @@ public class Colony implements WritableClass {
         }
         return jsonArray;
     }
+
 }
