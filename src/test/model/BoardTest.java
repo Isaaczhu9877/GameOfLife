@@ -88,7 +88,29 @@ public class BoardTest {
     }
 
     @Test
-    public void testSetBoardNotInBoard() {
+    public void testSetBoardNotInBoardXPos() {
+        try {
+            board.setBoard(10000,1,1);
+            assertEquals(board.getValue(1,1), 1);
+            fail("Unexpected exception");
+        } catch (InvalidCoordinateException e) {
+
+        }
+    }
+
+    @Test
+    public void testSetBoardNotInBoardYPos() {
+        try {
+            board.setBoard(1,100000,1);
+            assertEquals(board.getValue(10,100), 1);
+            fail("Unexpected exception");
+        } catch (InvalidCoordinateException e) {
+
+        }
+    }
+
+    @Test
+    public void testSetBoardNotInBoardBothPos() {
         try {
             board.setBoard(10000,100000,1);
             assertEquals(board.getValue(10000,100000), 1);
@@ -111,6 +133,39 @@ public class BoardTest {
 
     @Test
     public void testGetValueNotInBoard() {
+        try {
+            board.setBoard(1,1,1);
+            assertEquals(board.getValue(10000,10000), 1);
+            fail("Unexpected exception");
+        } catch (InvalidCoordinateException e) {
+
+        }
+    }
+
+    @Test
+    public void testGetValueNotInBoardXPos() {
+        try {
+            board.setBoard(1,1,1);
+            assertEquals(board.getValue(10000,1), 1);
+            fail("Unexpected exception");
+        } catch (InvalidCoordinateException e) {
+
+        }
+    }
+
+    @Test
+    public void testGetValueNotInBoardYPos() {
+        try {
+            board.setBoard(1,1,1);
+            assertEquals(board.getValue(1,10000), 1);
+            fail("Unexpected exception");
+        } catch (InvalidCoordinateException e) {
+
+        }
+    }
+
+    @Test
+    public void testGetValueNotInBoardBothPos() {
         try {
             board.setBoard(1,1,1);
             assertEquals(board.getValue(10000,10000), 1);
