@@ -46,3 +46,10 @@ the game.
 
 I have implemented a robust class with a method that throws an exception. The Board class methods getValue and setBoard 
 throws an InvalidCoordinateException when the user tries to access a position that is not on the current board.
+
+##Phase 4: Task 3
+
+If I had more time to work on the project I would like to refactor the colony class. I believe that my implementation is not the most efficient
+and that I could completely eliminate the Colony class and achieve the same functionality with only the Board/Cell classes. To do this I would
+begin by creating new methods in both classes to replicate the functionality of the Colony class and also change how cells are added and tracked/updated
+within the board class.
