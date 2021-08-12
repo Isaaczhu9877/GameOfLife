@@ -89,7 +89,11 @@ public class ColonyTest {
         colony.insertCells(board);
         for (int x = 0; x < board.getWidth(); x++){
             for (int y = 0; y < board.getHeight(); y++ ) {
-                assertEquals(board.getValue(x, y), 0);
+                try {
+                    assertEquals(board.getValue(x, y), 0);
+                } catch (InvalidCoordinateException e) {
+                    fail("Unexpected exception");
+                }
             }
         }
     }
@@ -99,8 +103,13 @@ public class ColonyTest {
         colony.addCell(cell);
         colony.addCell(cell2);
         colony.insertCells(board);
-        assertEquals(board.getValue(0,0), 1);
-        assertEquals(board.getValue(0,1), 1);
+        try {
+            assertEquals(board.getValue(0,0), 1);
+            assertEquals(board.getValue(0,1), 1);
+        } catch (InvalidCoordinateException e) {
+            fail("Unexpected exception");
+        }
+
     }
 
 
@@ -109,7 +118,11 @@ public class ColonyTest {
         colony.filter(board);
         for (int y = 0; y < board.getHeight(); y++){
             for (int x = 0; x < board.getWidth(); x++ ) {
-                assertEquals(board.getValue(x, y), 0);
+                try {
+                    assertEquals(board.getValue(x, y), 0);
+                } catch (InvalidCoordinateException e) {
+                    fail("Unexpected exception");
+                }
             }
         }
     }
@@ -118,11 +131,16 @@ public class ColonyTest {
     public void testFilterOneCell() {
         colony.addCell(cell);
         colony.insertCells(board);
-        assertEquals(board.getValue(cell.getPosX(), cell.getPosY()), 1);
-        colony.filter(board);
-        assertEquals(colony.getSize(), 0);
-        assertEquals(board.getValue(cell.getPosX(), cell.getPosY()), 0);
+        try {
+            assertEquals(board.getValue(cell.getPosX(), cell.getPosY()), 1);
+            colony.filter(board);
+            assertEquals(colony.getSize(), 0);
+            assertEquals(board.getValue(cell.getPosX(), cell.getPosY()), 0);
+        } catch (InvalidCoordinateException e) {
+            fail("Unexpected exception");
+        }
     }
+
     @Test
     public void testRemove() {
         colony.addCell(cell);
@@ -137,18 +155,22 @@ public class ColonyTest {
         colony.addCell(cell4);
         colony.addCell(cell5);
         colony.insertCells(board);
-        assertEquals(board.getValue(cell2.getPosX(), cell2.getPosY()), 1);
-        assertEquals(board.getValue(cell3.getPosX(), cell3.getPosY()), 1);
-        assertEquals(board.getValue(cell4.getPosX(), cell4.getPosY()), 1);
-        assertEquals(board.getValue(cell5.getPosX(), cell5.getPosY()), 1);
-        assertEquals(board.getValue(cell.getPosX(), cell.getPosY()), 1);
-        colony.filter(board);
-        assertEquals(board.getValue(cell2.getPosX(), cell2.getPosY()), 0);
-        assertEquals(board.getValue(cell3.getPosX(), cell3.getPosY()), 0);
-        assertEquals(board.getValue(cell4.getPosX(), cell4.getPosY()), 0);
-        assertEquals(board.getValue(cell5.getPosX(), cell5.getPosY()), 0);
-        assertEquals(board.getValue(cell.getPosX(), cell.getPosY()), 0);
-        assertEquals(colony.getSize(), 0);
+        try {
+            assertEquals(board.getValue(cell2.getPosX(), cell2.getPosY()), 1);
+            assertEquals(board.getValue(cell3.getPosX(), cell3.getPosY()), 1);
+            assertEquals(board.getValue(cell4.getPosX(), cell4.getPosY()), 1);
+            assertEquals(board.getValue(cell5.getPosX(), cell5.getPosY()), 1);
+            assertEquals(board.getValue(cell.getPosX(), cell.getPosY()), 1);
+            colony.filter(board);
+            assertEquals(board.getValue(cell2.getPosX(), cell2.getPosY()), 0);
+            assertEquals(board.getValue(cell3.getPosX(), cell3.getPosY()), 0);
+            assertEquals(board.getValue(cell4.getPosX(), cell4.getPosY()), 0);
+            assertEquals(board.getValue(cell5.getPosX(), cell5.getPosY()), 0);
+            assertEquals(board.getValue(cell.getPosX(), cell.getPosY()), 0);
+            assertEquals(colony.getSize(), 0);
+        } catch (InvalidCoordinateException e) {
+            fail("Unexpected exception");
+        }
     }
 
     @Test
@@ -157,16 +179,21 @@ public class ColonyTest {
         colony.addCell(new Cell(1, 0));
         colony.addCell(new Cell(0, 1));
         colony.insertCells(board);
-        assertEquals(board.getValue(0, 1), 1);
-        assertEquals(board.getValue(1, 0), 1);
-        assertEquals(colony.getSize(), 3);
-        assertEquals(board.getValue(cell.getPosX(), cell.getPosY()), 1);
-        colony.filter(board);
-        assertEquals(board.getValue(0, 1), 1);
-        assertEquals(board.getValue(1, 0), 1);
-        assertEquals(board.getValue(cell.getPosX(), cell.getPosY()), 1);
-        assertEquals(board.getValue(1, 1), 1);
-        assertEquals(colony.getSize(), 4);
+        try {
+            assertEquals(board.getValue(0, 1), 1);
+            assertEquals(board.getValue(1, 0), 1);
+            assertEquals(colony.getSize(), 3);
+            assertEquals(board.getValue(cell.getPosX(), cell.getPosY()), 1);
+            colony.filter(board);
+            assertEquals(board.getValue(0, 1), 1);
+            assertEquals(board.getValue(1, 0), 1);
+            assertEquals(board.getValue(cell.getPosX(), cell.getPosY()), 1);
+            assertEquals(board.getValue(1, 1), 1);
+            assertEquals(colony.getSize(), 4);
+        } catch (InvalidCoordinateException e) {
+            fail("Unexpected exception");
+        }
+
     }
 
     @Test
@@ -175,9 +202,14 @@ public class ColonyTest {
         colony.addCell(new Cell(0, 1));
         colony.insertCells(board);
         colony.filter(board);
-        assertEquals(board.getValue(1, 1), 0);
-        assertEquals(board.getValue(1, 0), 0);
-        assertEquals(colony.getSize(), 0);
+        try {
+            assertEquals(board.getValue(1, 1), 0);
+            assertEquals(board.getValue(1, 0), 0);
+            assertEquals(colony.getSize(), 0);
+        } catch (InvalidCoordinateException e) {
+            fail("Unexpected exception");
+        }
+
     }
     @Test
     public void testFilter3UpDown() {
@@ -186,12 +218,16 @@ public class ColonyTest {
         colony.addCell(new Cell(2, 1));
         colony.insertCells(board);
         colony.filter(board);
-        assertEquals(board.getValue(1, 1), 1);
-        assertEquals(board.getValue(1, 0), 0);
-        assertEquals(board.getValue(1, 2), 0);
-        assertEquals(board.getValue(0, 1), 1);
-        assertEquals(board.getValue(2, 1), 1);
-        assertEquals(colony.getSize(), 3);
+        try {
+            assertEquals(board.getValue(1, 1), 1);
+            assertEquals(board.getValue(1, 0), 0);
+            assertEquals(board.getValue(1, 2), 0);
+            assertEquals(board.getValue(0, 1), 1);
+            assertEquals(board.getValue(2, 1), 1);
+            assertEquals(colony.getSize(), 3);
+        } catch (InvalidCoordinateException e) {
+            fail("Unexpected exception");
+        }
     }
 
     @Test
@@ -201,13 +237,16 @@ public class ColonyTest {
         colony.addCell(new Cell(1, 3));
         colony.insertCells(board);
         colony.filter(board);
-        assertEquals(board.getValue(2, 1), 1);
-        assertEquals(board.getValue(1, 1), 0);
-        assertEquals(board.getValue(3, 1), 0);
-        assertEquals(board.getValue(2, 0), 1);
-        assertEquals(board.getValue(2, 2), 1);
-        assertEquals(colony.getSize(), 3);
-
+        try {
+            assertEquals(board.getValue(2, 1), 1);
+            assertEquals(board.getValue(1, 1), 0);
+            assertEquals(board.getValue(3, 1), 0);
+            assertEquals(board.getValue(2, 0), 1);
+            assertEquals(board.getValue(2, 2), 1);
+            assertEquals(colony.getSize(), 3);
+        } catch (InvalidCoordinateException e) {
+            fail("Unexpected exception");
+        }
     }
 
     @Test
@@ -218,11 +257,16 @@ public class ColonyTest {
         colony.addCell(new Cell(2, 2));
         colony.insertCells(board);
         colony.filter(board);
-        assertEquals(board.getValue(2, 1), 1);
-        assertEquals(board.getValue(1, 1), 1);
-        assertEquals(board.getValue(3, 1), 1);
-        assertEquals(board.getValue(2, 2), 1);
-        assertEquals(colony.getSize(), 7);
+        try {
+            assertEquals(board.getValue(2, 1), 1);
+            assertEquals(board.getValue(1, 1), 1);
+            assertEquals(board.getValue(3, 1), 1);
+            assertEquals(board.getValue(2, 2), 1);
+            assertEquals(colony.getSize(), 7);
+        } catch (InvalidCoordinateException e) {
+            fail("Unexpected exception");
+        }
+
     }
     @Test
     public void testFilter8Cells() {

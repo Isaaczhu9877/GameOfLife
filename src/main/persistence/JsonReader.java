@@ -17,6 +17,7 @@ import org.json.*;
 // represents a JSON reader that creates Colony object from given JSON file
 public class JsonReader {
     private String source;
+    private Colony colony;
 
     // EEFFECTS: Constructs reader for source file
     public JsonReader(String source) {
@@ -38,7 +39,7 @@ public class JsonReader {
 
     // EFFECTS: creates colony object from Json file
     public Colony setUpObject(JSONObject jsonObject) {
-        Colony colony = new Colony();
+        colony = new Colony();
         JSONArray cellArray = jsonObject.getJSONArray("cells");
         for (Object cell : cellArray) {
             JSONObject nextCell = (JSONObject) cell;

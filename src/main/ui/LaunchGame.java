@@ -3,6 +3,7 @@ package ui;
 import model.Board;
 import model.Cell;
 import model.Colony;
+import model.InvalidCoordinateException;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -181,10 +182,14 @@ public class LaunchGame {
         for (int i = 0; i < board.getHeight(); i++) {
             String border = "|";
             for (int j = 0; j < board.getWidth(); j++) {
-                if (board.getValue(j, i) == 0) {
-                    border += ".";
-                } else {
-                    border += "0";
+                try {
+                    if (board.getValue(j, i) == 0) {
+                        border += ".";
+                    } else {
+                        border += "0";
+                    }
+                } catch (InvalidCoordinateException e) {
+                    System.out.println("Coordinate not on board");
                 }
             }
             border += "|";

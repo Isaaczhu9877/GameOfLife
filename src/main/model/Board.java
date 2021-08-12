@@ -20,7 +20,11 @@ public class Board {
     public void fillBoard() {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                setBoard(x,y,0);
+                try {
+                    setBoard(x,y,0);
+                } catch (InvalidCoordinateException e) {
+                    continue;
+                }
             }
         }
     }
@@ -107,13 +111,22 @@ public class Board {
 
 
     // EFFECTS: sets given coordinates on board to given status
-    public void setBoard(int x, int y, int status) {
-        this.board[y][x] = status;
+    public void setBoard(int x, int y, int status) throws InvalidCoordinateException {
+        if (x >= width || y >= height) {
+            throw new InvalidCoordinateException();
+        } else {
+            this.board[y][x] = status;
+        }
     }
 
-    // EFFECTS: gets the value at given coordinate on board
-    public int getValue(int x, int y) {
-        return board[y][x];
+    // EFFECTS: gets the value at given coordinate on board, if not on board throws
+    // InvalidCoordinateException
+    public int getValue(int x, int y) throws InvalidCoordinateException {
+        if (x >= width || y >= height) {
+            throw new InvalidCoordinateException();
+        } else {
+            return board[y][x];
+        }
     }
 
     // EFFECTS: returns the width of the board

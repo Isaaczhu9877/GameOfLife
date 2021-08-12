@@ -21,11 +21,12 @@ public class Colony implements WritableClass {
 
     // REQUIRES: Cell to have different position than all other cells in list
     // MODIFIES: this
-    // EFFECTRS: adds cell to colony
+    // EFFECTS: adds cell to colony if cell is not already in colony
     public void addCell(Cell c) {
         if (!cellColony.contains(c)) {
             this.cellColony.add(c);
         }
+
     }
 
     // MODIFIES: this
@@ -43,7 +44,11 @@ public class Colony implements WritableClass {
         for (Cell cell : cellColony) {
             int x = cell.getPosX();
             int y = cell.getPosY();
-            board.setBoard(x, y, 1);
+            try {
+                board.setBoard(x, y, 1);
+            } catch (InvalidCoordinateException e) {
+                continue;
+            }
         }
     }
 
@@ -70,11 +75,25 @@ public class Colony implements WritableClass {
         }
         for (Cell cell : deadList) {
             cellColony.remove(cell);
-            board.setBoard(cell.getPosX(), cell.getPosY(), 0);
+            organizeColony(board, cell, "dead");
         }
         for (Cell cell : aliveList) {
             cellColony.add(cell);
-            board.setBoard(cell.getPosX(), cell.getPosY(), 1);
+            organizeColony(board, cell, "alive");
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: sets cell position on board to dead or alive
+    private void organizeColony(Board board, Cell cell, String status) {
+        try {
+            if (status.equals("dead")) {
+                board.setBoard(cell.getPosX(), cell.getPosY(), 0);
+            } else  {
+                board.setBoard(cell.getPosX(), cell.getPosY(), 1);
+            }
+        } catch (InvalidCoordinateException e) {
+            return;
         }
     }
 
