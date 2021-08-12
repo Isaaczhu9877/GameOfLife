@@ -112,6 +112,22 @@ public class ColonyTest {
 
     }
 
+    @Test
+    public void testInsertCellsOutOfBoard() {
+        try {
+            assertEquals(colony.getSize(), 0);
+            colony.addCell(cell);
+            colony.addCell(cell2);
+            colony.addCell(new Cell(10000, 100000));
+            colony.insertCells(board);
+            assertEquals(board.getValue(0,0), 1);
+            assertEquals(board.getValue(0,1), 1);
+        } catch (InvalidCoordinateException e) {
+            fail("Unexpected exception");
+        }
+
+    }
+
 
     @Test
     public void testFilterEmptyBoard() {
@@ -315,5 +331,21 @@ public class ColonyTest {
         assertEquals(9, colony.getSize());
         colony.wipe();
         assertEquals(0, colony.getSize());
+    }
+
+    @Test
+    public void testOrganizeColony() {
+        try {
+            board.setBoard(1,1,1);
+            assertEquals(board.getValue(1,1), 1);
+            colony.organizeColony(board, new Cell(1,1), "dead");
+            assertEquals(board.getValue(1,1), 0);
+            assertEquals(board.getValue(10,1), 0);
+            colony.organizeColony(board, new Cell(1,10), "alive");
+            assertEquals(board.getValue(10,1), 1);
+            colony.organizeColony(board, new Cell(10000,10000), "dead");
+        } catch (InvalidCoordinateException e) {
+            fail("Unexpected exception");
+        }
     }
 }

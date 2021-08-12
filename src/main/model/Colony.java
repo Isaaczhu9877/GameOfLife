@@ -85,7 +85,7 @@ public class Colony implements WritableClass {
 
     // MODIFIES: this
     // EFFECTS: sets cell position on board to dead or alive
-    private void organizeColony(Board board, Cell cell, String status) {
+    public void organizeColony(Board board, Cell cell, String status) {
         try {
             if (status.equals("dead")) {
                 board.setBoard(cell.getPosX(), cell.getPosY(), 0);

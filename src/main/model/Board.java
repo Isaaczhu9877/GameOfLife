@@ -20,11 +20,7 @@ public class Board {
     public void fillBoard() {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                try {
-                    setBoard(x,y,0);
-                } catch (InvalidCoordinateException e) {
-                    continue;
-                }
+                this.board[y][x] = 0;
             }
         }
     }

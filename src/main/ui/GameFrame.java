@@ -172,7 +172,6 @@ public class GameFrame extends JFrame {
     public void loadGame() {
         try {
             colony = jsonReader.read();
-            System.out.println("Loaded board form last save");
             ImageIcon icon = new ImageIcon("./data/SuccessKidMeme.jpeg");
             JOptionPane.showMessageDialog(null, "Loaded board from file!", "System Message",
                     JOptionPane.PLAIN_MESSAGE, icon);

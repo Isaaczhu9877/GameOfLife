@@ -45,4 +45,4 @@ the game.
 ##Phase 4: Task 2
 
 I have implemented a robust class with a method that throws an exception. The Board class methods getValue and setBoard 
-throws an InvalidCoordinateException when the  user tries to access a position that is not on the current board.
+throws an InvalidCoordinateException when the user tries to access a position that is not on the current board.

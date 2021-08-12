@@ -32,6 +32,20 @@ public class BoardTest {
     }
 
     @Test
+    public void testFillBoardOutBounds(){
+
+        for (int x = 0; x < board.getWidth(); x++){
+            for (int y = 0; y < board.getHeight(); y++) {
+                try {
+                    assertEquals(board.getValue(x, y), 0);
+                } catch (InvalidCoordinateException e) {
+                    fail("Unexpected exception");
+                }
+            }
+        }
+    }
+
+    @Test
     public void testCheckSurroundingEmpty() {
         assertEquals(board.checkSurrounding(15, 15), 0);
 
@@ -92,7 +106,7 @@ public class BoardTest {
         try {
             board.setBoard(10000,1,1);
             assertEquals(board.getValue(1,1), 1);
-            fail("Unexpected exception");
+            fail("Expected exception");
         } catch (InvalidCoordinateException e) {
 
         }
@@ -103,7 +117,7 @@ public class BoardTest {
         try {
             board.setBoard(1,100000,1);
             assertEquals(board.getValue(10,100), 1);
-            fail("Unexpected exception");
+            fail("Expected exception");
         } catch (InvalidCoordinateException e) {
 
         }
@@ -114,7 +128,7 @@ public class BoardTest {
         try {
             board.setBoard(10000,100000,1);
             assertEquals(board.getValue(10000,100000), 1);
-            fail("Unexpected exception");
+            fail("Expected exception");
         } catch (InvalidCoordinateException e) {
 
         }
@@ -136,7 +150,7 @@ public class BoardTest {
         try {
             board.setBoard(1,1,1);
             assertEquals(board.getValue(10000,10000), 1);
-            fail("Unexpected exception");
+            fail("Expected exception");
         } catch (InvalidCoordinateException e) {
 
         }
@@ -158,7 +172,7 @@ public class BoardTest {
         try {
             board.setBoard(1,1,1);
             assertEquals(board.getValue(1,10000), 1);
-            fail("Unexpected exception");
+            fail("Expected exception");
         } catch (InvalidCoordinateException e) {
 
         }
@@ -169,7 +183,7 @@ public class BoardTest {
         try {
             board.setBoard(1,1,1);
             assertEquals(board.getValue(10000,10000), 1);
-            fail("Unexpected exception");
+            fail("Expected exception");
         } catch (InvalidCoordinateException e) {
 
         }
