@@ -1,9 +1,10 @@
 package model;
 
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.WritableClass;
+
+import java.util.Objects;
 
 //Class that represents a Cell with a given x and y position and a status stating if its living of read
 public class Cell implements WritableClass {
@@ -63,6 +64,11 @@ public class Cell implements WritableClass {
         final Cell newCell = (Cell) obj;
         result = (this.posY == newCell.posY && this.posX == newCell.posX);
         return result;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(status, posX, posY);
     }
 
     // EFFECTS: creates Json representation of Cell

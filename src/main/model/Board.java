@@ -4,8 +4,8 @@ package model;
 // Class that represents a game grid with a given width and height
 // 0,0 is at upper left and x increases from right to left and y from top to bottom
 public class Board {
-    private int height = 40;
-    private int width = 80;
+    private final int height = 40;
+    private final int width = 80;
     private int[][] board;
 
 

@@ -36,8 +36,6 @@ public class ButtonPanel extends JPanel {
     public Component startButton() {
         startButton = new JButton("Start");
         setFocusable(false);
-        setBounds(1,1,100,50);
-        setPreferredSize(new Dimension(100,50));
         return startButton;
     }
 
@@ -46,8 +44,6 @@ public class ButtonPanel extends JPanel {
     public Component saveButton() {
         saveButton = new JButton("Save");
         setFocusable(false);
-        setBounds(100,1,100,50);
-        setPreferredSize(new Dimension(100,50));
         return saveButton;
     }
 
@@ -56,8 +52,6 @@ public class ButtonPanel extends JPanel {
     public Component loadButton() {
         loadButton = new JButton("Load");
         setFocusable(false);
-        setBounds(200,1,100,50);
-        setPreferredSize(new Dimension(100,50));
         return loadButton;
     }
 
@@ -66,8 +60,6 @@ public class ButtonPanel extends JPanel {
     public Component resetButton() {
         resetButton = new JButton("Clear Board");
         setFocusable(false);
-        setBounds(300,1,100,50);
-        setPreferredSize(new Dimension(100,50));
         return resetButton;
     }
 
@@ -85,7 +77,6 @@ public class ButtonPanel extends JPanel {
     // EFFECTS: creates exit button
     public Component exitButton() {
         exitButton = new JButton("Exit");
-        exitButton.setBackground(new Color(201, 38, 38));
         setFocusable(false);
         return exitButton;
     }

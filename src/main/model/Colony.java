@@ -12,28 +12,25 @@ import java.util.Set;
 // represents an array of Cells used to track living cells on the game board
 public class Colony implements WritableClass {
 
-    private List<Cell> cellColony;
+    private Set<Cell> colony;
 
     // EFFECTS: creates new colony with zero cells
     public Colony() {
-        cellColony = new ArrayList<>();
+        colony = new HashSet<>();
     }
 
-    // REQUIRES: Cell to have different position than all other cells in list
     // MODIFIES: this
-    // EFFECTS: adds cell to colony if cell is not already in colony
+    // EFFECTS: adds cell to colony
     public void addCell(Cell c) {
-        if (!cellColony.contains(c)) {
-            this.cellColony.add(c);
-        }
+        this.colony.add(c);
 
     }
 
     // MODIFIES: this
     // if cell in list removes cell from colony and kills it, else do nothing
     public void delete(Cell cell) {
-        if (cellColony.contains(cell)) {
-            cellColony.remove(cell);
+        if (colony.contains(cell)) {
+            colony.remove(cell);
             cell.kill();
         }
     }
@@ -41,13 +38,13 @@ public class Colony implements WritableClass {
     // MODIFIES: board
     // EFFECTS: inserts all cells in cellColony into a board, if empty do nothing
     public void insertCells(Board board) {
-        for (Cell cell : cellColony) {
+        for (Cell cell : colony) {
             int x = cell.getPosX();
             int y = cell.getPosY();
             try {
                 board.setBoard(x, y, 1);
             } catch (InvalidCoordinateException e) {
-                continue;
+                //continue
             }
         }
     }
@@ -65,20 +62,20 @@ public class Colony implements WritableClass {
                 int numOfNeighbours = board.checkSurrounding(row, column);
                 Cell cell = new Cell(row, column);
                 if (numOfNeighbours > 3 || numOfNeighbours < 2) {
-                    if (cellColony.contains(cell)) {
+                    if (colony.contains(cell)) {
                         deadList.add(cell);
                     }
-                }  else if (numOfNeighbours == 3 && !(cellColony.contains(cell))) {
+                }  else if (numOfNeighbours == 3 && !(colony.contains(cell))) {
                     aliveList.add(cell);
                 }
             }
         }
         for (Cell cell : deadList) {
-            cellColony.remove(cell);
+            colony.remove(cell);
             organizeColony(board, cell, "dead");
         }
         for (Cell cell : aliveList) {
-            cellColony.add(cell);
+            colony.add(cell);
             organizeColony(board, cell, "alive");
         }
     }
@@ -93,25 +90,25 @@ public class Colony implements WritableClass {
                 board.setBoard(cell.getPosX(), cell.getPosY(), 1);
             }
         } catch (InvalidCoordinateException e) {
-            return;
+            //continue
         }
     }
 
 
     // EFFECTS: returns the size of the Colony
     public int getSize() {
-        return cellColony.size();
+        return colony.size();
     }
 
     // EFFECTS: returns if the Colony contains a cell at a certain position
     public boolean contain(Cell c) {
-        return cellColony.contains(c);
+        return colony.contains(c);
     }
 
     //MODIFIES: this
     // EFFECTS: clears all cells in colony
     public void wipe() {
-        cellColony.clear();
+        colony.clear();
 
     }
 
@@ -126,7 +123,7 @@ public class Colony implements WritableClass {
     // EFFECTS: creates Json representation of each cell in Colony
     public JSONArray cellsToJson() {
         JSONArray jsonArray = new JSONArray();
-        for (Cell cell : cellColony) {
+        for (Cell cell : colony) {
             jsonArray.put(cell.toJson());
         }
         return jsonArray;
